@@ -5,7 +5,11 @@ const { data: nav } = await getEntry('homepage', 'nav');
 <header class="site">
   <div class="navrow">
     <a class="brand" href="/">
-      <span class="mark">{nav.brandInitial}</span>
+      {nav.logoImage ? (
+        <img src={nav.logoImage} alt={nav.brandName} class="logo-img" />
+      ) : (
+        <span class="mark">{nav.brandInitial}</span>
+      )}
       {nav.brandName}
     </a>
     <nav class="links" aria-label="Primary">
@@ -51,6 +55,13 @@ const { data: nav } = await getEntry('homepage', 'nav');
     font-family: 'Crimson Text', serif;
     font-weight: 600;
     font-size: 17px;
+    flex: none;
+  }
+  .brand .logo-img {
+    height: 34px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
     flex: none;
   }
   nav.links {

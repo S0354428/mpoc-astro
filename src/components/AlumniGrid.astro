@@ -1,17 +1,26 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 const all = (await getCollection('alumni')).sort((a, b) => a.data.order - b.data.order);
 const featured = all.find((a) => a.data.featured);
 const rest = all.filter((a) => a !== featured);
+const { Content: FeaturedContent } = featured ? await render(featured) : { Content: null };
 ---
 {featured && (
   <div class="spotlight">
-    <div class="spotlight-photo"><span class="ph-label">photo</span></div>
+    <div class:list={["spotlight-photo", featured.data.photo && "has-photo"]}>
+      {featured.data.photo ? (
+        <img src={featured.data.photo} alt={featured.data.name} class="alumni-img" />
+      ) : (
+        <span class="ph-label">photo</span>
+      )}
+    </div>
     <div class="spotlight-text">
       <span class="tag">Featured Alumna Spotlight</span>
       <h3>{featured.data.anonymous ? 'Anonymous Alum' : featured.data.name}</h3>
       <p class="role">{featured.data.currentRole} · Class of {featured.data.gradYear}</p>
-      <p class="body">Placeholder for their full story — how MPOC connects to what they do now.</p>
+      <div class="body">
+        {FeaturedContent ? <FeaturedContent /> : <p>Placeholder for their full story — how MPOC connects to what they do now.</p>}
+      </div>
       {featured.data.linkedin && <a class="btn btn-ghost small" href={featured.data.linkedin} target="_blank" rel="noopener">Connect on LinkedIn</a>}
     </div>
   </div>
@@ -20,7 +29,13 @@ const rest = all.filter((a) => a !== featured);
 <div class="grid">
   {rest.map((a) => (
     <div class="card">
-      <div class="photo"><span class="ph-label">photo</span></div>
+      <div class:list={["photo", a.data.photo && "has-photo"]}>
+        {a.data.photo ? (
+          <img src={a.data.photo} alt={a.data.name} class="alumni-img" />
+        ) : (
+          <span class="ph-label">photo</span>
+        )}
+      </div>
       <h4>{a.data.anonymous ? 'Anonymous Alum' : a.data.name}</h4>
       <p class="role">{a.data.currentRole}</p>
       <p class="meta">Class of {a.data.gradYear} · {a.data.tag}</p>
@@ -47,12 +62,23 @@ const rest = all.filter((a) => a !== featured);
     background: repeating-linear-gradient(135deg, var(--oat), var(--oat) 10px, var(--oat-deep) 10px, var(--oat-deep) 20px);
     border: 1px solid var(--line);
     display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .spotlight-photo.has-photo, .card .photo.has-photo {
+    background: none;
+  }
+  .alumni-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .spotlight .ph-label { font-size: 12px; color: var(--charcoal); }
   .spotlight .tag { font-size: 12px; font-weight: 500; color: var(--orange-deep); text-transform: uppercase; letter-spacing: 0.04em; }
   .spotlight h3 { margin-top: 10px; font-size: clamp(24px, 2.6vw, 30px); }
   .spotlight .role { margin-top: 6px; color: var(--charcoal); font-size: 14.5px; }
   .spotlight .body { margin-top: 14px; color: var(--charcoal); font-size: 15px; }
+  .spotlight .body :global(p) { margin: 0; }
   .btn.small { margin-top: 18px; padding: 9px 18px; font-size: 13px; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
   .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px; }
@@ -63,6 +89,7 @@ const rest = all.filter((a) => a !== featured);
     border: 1px solid var(--line);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 12px;
+    overflow: hidden;
   }
   .card .ph-label { font-size: 11px; color: var(--charcoal); }
   .card h4 { font-size: 16px; }

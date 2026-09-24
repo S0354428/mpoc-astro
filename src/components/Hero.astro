@@ -13,8 +13,12 @@ const { data: hero } = await getEntry('homepage', 'hero');
         <a class="btn btn-ghost" href={hero.secondaryButtonLink}>{hero.secondaryButtonText}</a>
       </div>
     </div>
-    <div class="hero-media">
-      <span class="ph-label">{hero.photoPlaceholderNote}</span>
+    <div class:list={["hero-media", hero.photo && "has-photo"]}>
+      {hero.photo ? (
+        <img src={hero.photo} alt={hero.title} class="hero-img" />
+      ) : (
+        <span class="ph-label">{hero.photoPlaceholderNote}</span>
+      )}
     </div>
   </div>
 </section>
@@ -55,6 +59,16 @@ const { data: hero } = await getEntry('homepage', 'hero');
     justify-content: center;
     text-align: center;
     padding: 24px;
+  }
+  .hero-media.has-photo {
+    padding: 0;
+    background: none;
+  }
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .hero-media .ph-label {
     font-family: 'Poppins', sans-serif;

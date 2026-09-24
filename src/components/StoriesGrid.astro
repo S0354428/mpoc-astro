@@ -7,7 +7,13 @@ const rest = allStories.filter((s) => s !== featured);
 {featured && (
   <div class="featured">
     <span class="tag">{featured.data.category}</span>
-    <div class="featured-photo"><span class="ph-label">photo</span></div>
+    <div class:list={["featured-photo", featured.data.photo && "has-photo"]}>
+      {featured.data.photo ? (
+        <img src={featured.data.photo} alt={featured.data.name} class="story-img" />
+      ) : (
+        <span class="ph-label">photo</span>
+      )}
+    </div>
     <p class="quote">&ldquo;{featured.data.quote}&rdquo;</p>
     <p class="byline">{featured.data.anonymous ? 'Anonymous' : featured.data.name}{featured.data.role ? ` — ${featured.data.role}` : ''}</p>
   </div>
@@ -17,7 +23,13 @@ const rest = allStories.filter((s) => s !== featured);
   {rest.map((s) => (
     <div class="card">
       <span class="tag">{s.data.category}</span>
-      <div class="photo"><span class="ph-label">photo</span></div>
+      <div class:list={["photo", s.data.photo && "has-photo"]}>
+        {s.data.photo ? (
+          <img src={s.data.photo} alt={s.data.name} class="story-img" />
+        ) : (
+          <span class="ph-label">photo</span>
+        )}
+      </div>
       <p class="quote">&ldquo;{s.data.quote}&rdquo;</p>
       <p class="byline">{s.data.anonymous ? 'Anonymous' : s.data.name}{s.data.role ? ` — ${s.data.role}` : ''}</p>
     </div>
@@ -42,6 +54,16 @@ const rest = allStories.filter((s) => s !== featured);
     border: 1px solid var(--line);
     display: flex; align-items: center; justify-content: center;
     margin-top: 14px;
+    overflow: hidden;
+  }
+  .featured-photo.has-photo, .photo.has-photo {
+    background: none;
+  }
+  .story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .featured .ph-label { color: var(--charcoal); font-size: 12px; }
   .tag {
