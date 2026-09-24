@@ -1,0 +1,29 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const { data: hero } = await getEntry('vietnamPage', 'hero');
+const { data: dinner } = await getEntry('vietnamPage', 'dinner');
+const { data: cta } = await getEntry('vietnamPage', 'cta');
+---
+<BaseLayout title="Vietnam Program — MPOC">
+  <Nav />
+  <main>
+    <PageHero {...hero} />
+    <section class="wrap block narrow">
+      <SectionIntro eyebrow={dinner.eyebrow} title={dinner.title} body={dinner.body} />
+    </section>
+  </main>
+  <CtaBand {...cta} sectionId="apply" />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .block { padding: clamp(28px, 4vw, 48px) 0; }
+  .block.narrow { max-width: 700px; }
+</style>

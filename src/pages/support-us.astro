@@ -1,0 +1,78 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import CardGrid from '../components/CardGrid.astro';
+import SimpleList from '../components/SimpleList.astro';
+import TiersGrid from '../components/TiersGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const { data: hero } = await getEntry('supportUs', 'hero');
+const { data: waysToGive } = await getEntry('supportUs', 'waysToGive');
+const { data: moneyBreakdown } = await getEntry('supportUs', 'moneyBreakdown');
+const { data: mercerPartnership } = await getEntry('supportUs', 'mercerPartnership');
+const { data: tiersIntro } = await getEntry('supportUs', 'tiersIntro');
+const { data: tiers } = await getEntry('supportUs', 'tiers');
+const { data: events } = await getEntry('supportUs', 'events');
+const { data: contact } = await getEntry('supportUs', 'contact');
+
+const breakdownRows = (moneyBreakdown as { label: string; note: string }[]).map((m) => ({ primary: m.label, secondary: m.note }));
+const eventRows = (events as { name: string; date: string; note: string }[]).map((e) => ({ primary: e.name, secondary: `${e.date} — ${e.note}` }));
+---
+<BaseLayout title="Support Us — MPOC">
+  <Nav />
+  <main>
+    <PageHero {...hero} />
+
+    <section class="wrap block">
+      <SectionIntro eyebrow="Ways to give" title="How to support MPOC" />
+      <CardGrid items={waysToGive} />
+    </section>
+
+    <section class="wrap block narrow">
+      <SectionIntro eyebrow="Transparency" title="Where the money goes" />
+      <SimpleList rows={breakdownRows} />
+    </section>
+
+    <section class="wrap block narrow">
+      <div class="mercer-note">
+        <strong>{mercerPartnership.title}</strong>
+        <p>{mercerPartnership.body}</p>
+      </div>
+    </section>
+
+    <section class="wrap block">
+      <SectionIntro eyebrow={tiersIntro.eyebrow} title={tiersIntro.title} body={tiersIntro.body} />
+      <TiersGrid tiers={tiers} />
+    </section>
+
+    <section class="wrap block narrow">
+      <SectionIntro eyebrow="Events" title="Upcoming &amp; past fundraising events" />
+      <SimpleList rows={eventRows} />
+    </section>
+  </main>
+
+  <CtaBand
+    title={contact.title}
+    primaryButtonText={`Email ${contact.email}`}
+    primaryButtonLink={`mailto:${contact.email}`}
+    sectionId="partner-contact"
+  />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .block { padding: clamp(28px, 4vw, 48px) 0; }
+  .block.narrow { max-width: 700px; }
+  .mercer-note {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 24px;
+  }
+  .mercer-note strong { font-size: 15.5px; }
+  .mercer-note p { margin-top: 6px; color: var(--charcoal); font-size: 14.5px; }
+</style>

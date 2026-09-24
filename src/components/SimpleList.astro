@@ -1,0 +1,27 @@
+---
+interface Row { primary: string; secondary?: string; }
+interface Props { rows: Row[]; }
+const { rows } = Astro.props;
+---
+<div class="rows">
+  {rows.map((r) => (
+    <div class="row">
+      <span class="primary">{r.primary}</span>
+      {r.secondary && <span class="secondary">{r.secondary}</span>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .rows { border-top: 1px solid var(--line); }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .row .primary { font-weight: 500; font-size: 15px; }
+  .row .secondary { font-size: 13.5px; color: var(--charcoal); text-align: right; }
+</style>

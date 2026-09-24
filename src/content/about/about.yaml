@@ -1,0 +1,23 @@
+hero:
+  eyebrow: "About MPOC"
+  title: "Service, research, and leadership — built by students."
+  body: "The Mercer Prosthetics and Orthotics Club exists to promote education in prosthetic and orthotic fields, and to prepare students for service through the Mercer on Mission Vietnam program. We're not a copy of that program — we're the club that gets Mercer students ready for it, and gives them somewhere to keep growing whether they go on the trip or not."
+
+mission:
+  eyebrow: "Our mission"
+  title: "Article II — Purpose Statement"
+  body: "It shall be the purpose of the Mercer Prosthetics and Orthotics Club to promote the education of the general student body in prosthetic and orthotic fields of study and prepare students for participation in the Mercer on Mission Vietnam program if so desired. Our overall objective is to serve as an initiative for service learning, innovative research, and fundraising efforts at Mercer University."
+
+history:
+  eyebrow: "How we started"
+  title: "Our history"
+  body: "Placeholder — add MPOC's founding story here: who started the club, when, and why."
+
+facultySection:
+  eyebrow: "Faculty advisors"
+  title: "Who supports us"
+  body: "Placeholder — list faculty advisors and their role with the club here."
+
+faculty:
+  - name: "Placeholder Name"
+    role: "Faculty Advisor"

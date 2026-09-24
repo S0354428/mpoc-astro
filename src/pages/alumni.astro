@@ -1,0 +1,38 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import AlumniGrid from '../components/AlumniGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const { data: hero } = await getEntry('alumniPage', 'hero');
+const { data: stayConnected } = await getEntry('alumniPage', 'stayConnected');
+---
+<BaseLayout title="Alumni — MPOC">
+  <Nav />
+  <main>
+    <PageHero {...hero} />
+    <section class="wrap block">
+      <AlumniGrid />
+    </section>
+    <section class="wrap block narrow">
+      <p class="body">{stayConnected.body}</p>
+    </section>
+  </main>
+  <CtaBand
+    title={stayConnected.title}
+    primaryButtonText={stayConnected.ctaText}
+    primaryButtonLink={stayConnected.ctaLink}
+    sectionId="stay-connected"
+  />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .block { padding: 0 0 clamp(48px, 6vw, 72px); }
+  .block.narrow { max-width: 700px; padding-top: 0; }
+  .body { color: var(--charcoal); font-size: 15.5px; }
+</style>

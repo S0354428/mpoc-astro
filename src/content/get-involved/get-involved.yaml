@@ -1,0 +1,33 @@
+hero:
+  eyebrow: "Get Involved"
+  title: "Find your place in MPOC"
+  body: "Everything below runs year-round, across fall and spring. Most members build up through several of these at once — you don't need to pick just one, and you don't have to be headed to Vietnam to get a lot out of any of them."
+
+committees:
+  - title: "Clinical Training"
+    body: "Hands-on clinical training sessions led by exec board members, preparing students to work directly with patients."
+  - title: "Vietnamese Lessons"
+    body: "Language lessons run by exec board members throughout the year to prepare students for the Vietnam program."
+  - title: "Lab Volunteering"
+    body: "The ongoing, always-open backdrop of MPOC — volunteer in the prosthetics and orthotics lab and learn how devices are actually built, piece by piece, all year."
+  - title: "Research Committee"
+    body: "Innovative research is one of MPOC's three core pillars. This committee drives that work — placeholder for specifics on current projects."
+  - title: "Fundraising Committee"
+    body: "On-campus fundraising events that fund patient care and club operations — separate from the Vietnam Fundraising Dinner, which VSA runs."
+
+leadership:
+  eyebrow: "Grow into it"
+  title: "Leadership opportunities"
+  body: "Real responsibility, not just membership — lab supervisor roles, and leads within the Vietnamese lessons and clinical training sessions."
+
+howToJoin:
+  eyebrow: "Getting started"
+  title: "How to join"
+  body: "Placeholder — add meeting times, location, and any sign-up link here."
+
+cta:
+  title: "Ready to pick a place to start?"
+  primaryButtonText: "Contact us to join"
+  primaryButtonLink: "/contact"
+  secondaryButtonText: "See the Vietnam Program →"
+  secondaryButtonLink: "/vietnam-program"

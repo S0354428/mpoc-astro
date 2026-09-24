@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+const allStories = (await getCollection('stories')).sort((a, b) => a.data.order - b.data.order);
+const featured = allStories.find((s) => s.data.featured);
+const rest = allStories.filter((s) => s !== featured);
+---
+{featured && (
+  <div class="featured">
+    <span class="tag">{featured.data.category}</span>
+    <div class="featured-photo"><span class="ph-label">photo</span></div>
+    <p class="quote">&ldquo;{featured.data.quote}&rdquo;</p>
+    <p class="byline">{featured.data.anonymous ? 'Anonymous' : featured.data.name}{featured.data.role ? ` — ${featured.data.role}` : ''}</p>
+  </div>
+)}
+
+<div class="grid">
+  {rest.map((s) => (
+    <div class="card">
+      <span class="tag">{s.data.category}</span>
+      <div class="photo"><span class="ph-label">photo</span></div>
+      <p class="quote">&ldquo;{s.data.quote}&rdquo;</p>
+      <p class="byline">{s.data.anonymous ? 'Anonymous' : s.data.name}{s.data.role ? ` — ${s.data.role}` : ''}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .featured {
+    background: var(--ink);
+    color: var(--oat);
+    border-radius: 8px;
+    padding: clamp(28px, 4vw, 44px);
+    margin-bottom: clamp(32px, 4vw, 48px);
+    max-width: 720px;
+  }
+  .featured .quote { font-family: 'Crimson Text', serif; font-size: clamp(20px, 2.4vw, 26px); font-style: italic; line-height: 1.35; margin-top: 16px; }
+  .featured .byline { margin-top: 14px; font-size: 13.5px; opacity: 0.75; }
+  .featured-photo, .photo {
+    aspect-ratio: 16/9;
+    border-radius: 6px;
+    background: repeating-linear-gradient(135deg, var(--panel), var(--panel) 10px, var(--oat-deep) 10px, var(--oat-deep) 20px);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 14px;
+  }
+  .featured .ph-label { color: var(--charcoal); font-size: 12px; }
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--orange-deep);
+    background: rgba(247,104,0,0.1);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+  .featured .tag { color: var(--orange); background: rgba(255,122,31,0.16); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 20px; }
+  .card .photo { aspect-ratio: 16/10; margin-top: 12px; margin-bottom: 12px; }
+  .card .ph-label { color: var(--charcoal); font-size: 12px; }
+  .card .quote { font-size: 15px; color: var(--ink); font-style: italic; }
+  .card .byline { margin-top: 10px; font-size: 13px; color: var(--charcoal); }
+</style>

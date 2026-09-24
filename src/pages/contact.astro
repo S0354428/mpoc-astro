@@ -1,0 +1,47 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+
+const { data: hero } = await getEntry('contactPage', 'hero');
+const email = (await getEntry('contactPage', 'email')).data.address as string;
+const social = (await getEntry('contactPage', 'social')).data as { platform: string; link: string }[];
+const { data: meeting } = await getEntry('contactPage', 'meeting');
+---
+<BaseLayout title="Contact — MPOC">
+  <Nav />
+  <main>
+    <PageHero {...hero} />
+    <section class="wrap block narrow">
+      <div class="contact-card">
+        <div class="row">
+          <strong>Email</strong>
+          <a href={`mailto:${email}`}>{email}</a>
+        </div>
+        <div class="row">
+          <strong>Social</strong>
+          <span>
+            {social.map((s) => <a href={s.link} target="_blank" rel="noopener">{s.platform}</a>)}
+          </span>
+        </div>
+        <div class="row">
+          <strong>{meeting.title}</strong>
+          <span>{meeting.body}</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .block { padding: clamp(28px, 4vw, 48px) 0; }
+  .block.narrow { max-width: 640px; }
+  .contact-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: clamp(22px, 3vw, 32px); }
+  .row { display: flex; justify-content: space-between; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .row:last-child { border-bottom: none; }
+  .row a { color: var(--orange-deep); text-decoration: none; margin-right: 12px; }
+  .row span { color: var(--charcoal); text-align: right; }
+</style>

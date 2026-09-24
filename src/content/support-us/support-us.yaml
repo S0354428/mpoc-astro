@@ -1,0 +1,64 @@
+hero:
+  eyebrow: "Support Us"
+  title: "Fund the work directly"
+  body: "MPOC is a Mercer University student organization, not a registered nonprofit — donations are not tax-deductible. Every dollar goes straight to our club account and funds device materials, Vietnam program costs, and campus fundraising events."
+
+waysToGive:
+  - title: "Direct to our account"
+    body: "Venmo, CashApp, Zelle, or direct bank transfer — all routed straight to MPOC's club bank account. Placeholder for actual handles/QR codes once finalized."
+  - title: "Event tickets"
+    body: "Tickets for on-campus fundraising events, when live. Placeholder for current event links."
+  - title: "In-kind donations"
+    body: "Businesses can also donate materials or supplies directly rather than cash — reach out via our partnership contact."
+
+moneyBreakdown:
+  - label: "Vietnam program costs"
+    note: "Placeholder — largest share of funds raised"
+  - label: "Device materials"
+    note: "Placeholder"
+  - label: "Campus fundraising events"
+    note: "Placeholder"
+
+mercerPartnership:
+  title: "In partnership with Mercer University"
+  body: "Mercer University is MPOC's host institution — not a purchased sponsorship tier."
+
+tiersIntro:
+  eyebrow: "Business partners"
+  title: "Become a partner"
+  body: "MPOC partners with local businesses to support our work. Current and past partners include Sheridan Construction, with more relationships to be confirmed."
+
+tiers:
+  - name: "Community Partner"
+    price: ""
+    benefits:
+      - "Logo on our website's Support Us page"
+      - "One social media shoutout per year"
+  - name: "Stride Partner"
+    price: ""
+    benefits:
+      - "Everything in Community Partner"
+      - "Logo on the MPOC t-shirt"
+      - "Social shoutout each semester"
+      - "Name mentioned in our newsletter"
+  - name: "Founding Partner"
+    price: ""
+    benefits:
+      - "Everything in Stride Partner"
+      - "Larger, featured logo placement on the t-shirt"
+      - "Priority social shoutouts as news comes up"
+      - "Dedicated newsletter feature"
+      - "Invitation to a general body meeting or year-end celebration"
+
+events:
+  - name: "Mercer on Mission Vietnam Fundraising Dinner"
+    date: "Placeholder date"
+    note: "Hosted by VSA — MPOC volunteers day-of"
+  - name: "On-campus fundraiser"
+    date: "Placeholder date"
+    note: "Placeholder details"
+
+contact:
+  title: "Interested in partnering with us?"
+  body: "Reach out and let's talk about what makes sense for your business."
+  email: "mercermpoc@gmail.com"

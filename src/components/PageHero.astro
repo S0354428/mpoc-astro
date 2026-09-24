@@ -1,0 +1,40 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  body: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+}
+const { eyebrow, title, body, primaryButtonText, primaryButtonLink, secondaryButtonText, secondaryButtonLink } = Astro.props;
+---
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow-line"><span class="dash"></span> {eyebrow}</div>
+    <h1>{title}</h1>
+    <p class="body">{body}</p>
+    {(primaryButtonText || secondaryButtonText) && (
+      <div class="actions">
+        {primaryButtonText && <a class="btn btn-primary" href={primaryButtonLink}>{primaryButtonText}</a>}
+        {secondaryButtonText && <a class="btn btn-ghost" href={secondaryButtonLink}>{secondaryButtonText}</a>}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .page-hero { padding: clamp(44px, 7vw, 84px) 0 clamp(32px, 5vw, 56px); }
+  h1 {
+    font-size: clamp(32px, 4.4vw, 48px);
+    max-width: 20ch;
+  }
+  .body {
+    margin-top: 18px;
+    font-size: clamp(15.5px, 1.4vw, 17.5px);
+    color: var(--charcoal);
+    max-width: 62ch;
+  }
+  .actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; }
+</style>

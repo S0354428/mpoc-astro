@@ -1,0 +1,69 @@
+# =========================================================================
+# HOMEPAGE CONTENT
+# Edit the text after each colon (:) to change what shows up on the site.
+# Don't remove or rename anything to the LEFT of a colon — that's how the
+# website finds each piece of text. Save this file and the site updates.
+# =========================================================================
+
+hero:
+  eyebrow: "Mercer Prosthetics & Orthotics Club"
+  title: "Hands in the lab. Hearts in Vietnam."
+  lede: "We're Mercer students building real prosthetic and orthotic devices, training for the Mercer on Mission Vietnam program, and raising the funds that get patients care. This is where that work lives."
+  primaryButtonText: "Get Involved"
+  primaryButtonLink: "/get-involved"
+  secondaryButtonText: "Vietnam Program →"
+  secondaryButtonLink: "/vietnam-program"
+  photoPlaceholderNote: "Hero photo placeholder — students working in the P&O lab"
+
+stats:
+  - number: "—"
+    label: "Raised for patient care"
+  - number: "—"
+    label: "Patients served in Vietnam"
+  - number: "—"
+    label: "Students trained in the lab"
+  - number: "—"
+    label: "Years at Mercer"
+
+pillarsSection:
+  eyebrow: "What we do"
+  title: "Four ways students get hands-on with prosthetics and orthotics"
+  intro: "MPOC exists to prepare Mercer students for service, research, and leadership in the prosthetics and orthotics field — on campus and in Vietnam."
+
+pillars:
+  - title: "Lab volunteering"
+    body: "Work alongside the prosthetics and orthotics lab to learn how devices are actually fabricated, from measurement to fitting."
+  - title: "Fundraising"
+    body: "On-campus events and the Mercer on Mission Vietnam Fundraising Dinner, run with the Mercer Vietnamese Student Association, fund patient care directly."
+  - title: "Vietnamese & clinical training"
+    body: "Executive board members lead language lessons and clinical training sessions to prepare students for the trip and the work."
+  - title: "Leadership"
+    body: "Grow into a lab supervisor role or a lesson/training lead — real responsibility, not just membership."
+
+ctaBand:
+  title: "Ready to get your hands in the work?"
+  primaryButtonText: "See how to join"
+  primaryButtonLink: "/get-involved"
+  secondaryButtonText: "Vietnam application →"
+  secondaryButtonLink: "https://mom.mercer.edu/vietnam/"
+
+nav:
+  brandInitial: "M"
+  brandName: "MPOC"
+  links:
+    - text: "About"
+      link: "/about"
+    - text: "Get Involved"
+      link: "/get-involved"
+    - text: "Vietnam Program"
+      link: "/vietnam-program"
+    - text: "Stories"
+      link: "/stories"
+    - text: "Alumni"
+      link: "/alumni"
+  ctaText: "Support Us"
+  ctaLink: "/support-us"
+
+teamSection:
+  eyebrow: "Exec board"
+  title: "Who's running things this year"

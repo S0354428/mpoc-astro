@@ -1,0 +1,27 @@
+---
+interface Tier { name: string; price?: string; benefits: string[]; }
+interface Props { tiers: Tier[]; }
+const { tiers } = Astro.props;
+---
+<div class="tiers">
+  {tiers.map((tier, i) => (
+    <div class:list={["tier", i === tiers.length - 1 && "tier-top"]}>
+      <h3>{tier.name}</h3>
+      <ul>
+        {tier.benefits.map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+  ))}
+</div>
+
+<style>
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .tier { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: clamp(22px, 3vw, 30px); }
+  .tier-top { border-color: var(--orange); border-width: 2px; }
+  .tier h3 { font-size: 19px; }
+  .tier ul { margin: 16px 0 0; padding-left: 18px; }
+  .tier li { font-size: 14px; color: var(--charcoal); margin-bottom: 8px; line-height: 1.4; }
+  @media (max-width: 860px) {
+    .tiers { grid-template-columns: 1fr; }
+  }
+</style>

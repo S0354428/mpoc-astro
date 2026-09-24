@@ -1,0 +1,32 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import CardGrid from '../components/CardGrid.astro';
+
+const { data: hero } = await getEntry('partners', 'hero');
+const { data: vsa } = await getEntry('partners', 'vsa');
+const { data: jointEvents } = await getEntry('partners', 'jointEvents');
+---
+<BaseLayout title="Our Partners — MPOC">
+  <Nav />
+  <main>
+    <PageHero {...hero} />
+    <section class="wrap block narrow">
+      <SectionIntro eyebrow={vsa.eyebrow} title={vsa.title} body={vsa.body} />
+    </section>
+    <section class="wrap block">
+      <SectionIntro eyebrow="Together" title="What we do together" />
+      <CardGrid items={jointEvents} columns={3} />
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .block { padding: clamp(28px, 4vw, 48px) 0; }
+  .block.narrow { max-width: 700px; }
+</style>

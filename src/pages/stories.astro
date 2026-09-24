@@ -1,0 +1,37 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import StoriesGrid from '../components/StoriesGrid.astro';
+
+const { data: hero } = await getEntry('storiesPage', 'hero');
+const { data: categories } = await getEntry('storiesPage', 'categories');
+---
+<BaseLayout title="Stories — MPOC">
+  <Nav />
+  <main>
+    <PageHero {...hero} />
+    <section class="wrap block">
+      <div class="chips">
+        {(categories as string[]).map((c) => <span class="chip">{c}</span>)}
+      </div>
+      <StoriesGrid />
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .block { padding: 0 0 clamp(48px, 6vw, 72px); }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(28px, 4vw, 40px); }
+  .chip {
+    font-size: 13.5px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    color: var(--charcoal);
+    background: var(--panel);
+  }
+</style>

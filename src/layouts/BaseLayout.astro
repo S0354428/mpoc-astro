@@ -1,0 +1,94 @@
+---
+// This is the ONE file that controls how every page looks.
+// Content editors should never need to touch this file.
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "Mercer Prosthetics & Orthotics Club",
+  description = "Mercer students building prosthetic and orthotic devices, training for Mercer on Mission Vietnam, and raising funds for patient care.",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --oat: #F2EEE4;
+    --oat-deep: #E9E2D2;
+    --orange: #F76800;
+    --orange-deep: #D45700;
+    --ink: #222222;
+    --charcoal: #3F3F41;
+    --panel: #F5F5F5;
+    --line: rgba(34,34,34,0.12);
+    --white: #FFFFFF;
+    box-sizing: border-box;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--oat);
+    color: var(--ink);
+    font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.08;
+    margin: 0;
+    color: var(--ink);
+  }
+  p { line-height: 1.6; margin: 0; }
+  a { color: inherit; }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 4px;
+    font-size: 14.5px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary { background: var(--orange); color: white; }
+  .btn-primary:hover, .btn-primary:focus-visible { background: var(--orange-deep); }
+  .btn-ghost { border-color: var(--ink); color: var(--ink); }
+  .btn-ghost:hover, .btn-ghost:focus-visible { background: var(--ink); color: var(--oat); }
+  .eyebrow-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--orange-deep);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .eyebrow-line .dash { width: 26px; height: 2px; background: var(--orange); }
+</style>

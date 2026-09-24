@@ -1,0 +1,73 @@
+---
+import { getEntry } from 'astro:content';
+const { data: hero } = await getEntry('homepage', 'hero');
+---
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-line"><span class="dash"></span> {hero.eyebrow}</div>
+      <h1 class="hero-title">{hero.title}</h1>
+      <p class="hero-lede">{hero.lede}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={hero.primaryButtonLink}>{hero.primaryButtonText}</a>
+        <a class="btn btn-ghost" href={hero.secondaryButtonLink}>{hero.secondaryButtonText}</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <span class="ph-label">{hero.photoPlaceholderNote}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 6vw, 72px); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  h1.hero-title {
+    font-size: clamp(38px, 5.4vw, 62px);
+    max-width: 13ch;
+  }
+  .hero-lede {
+    margin-top: 20px;
+    font-size: clamp(16px, 1.7vw, 18.5px);
+    color: var(--charcoal);
+    max-width: 46ch;
+  }
+  .hero-actions {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .hero-media {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 6px;
+    overflow: hidden;
+    background: repeating-linear-gradient(135deg, var(--panel), var(--panel) 12px, var(--oat-deep) 12px, var(--oat-deep) 24px);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  }
+  .hero-media .ph-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--charcoal);
+    background: var(--oat);
+    border: 1px solid var(--line);
+    padding: 10px 16px;
+    border-radius: 4px;
+    max-width: 220px;
+  }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-media { order: -1; aspect-ratio: 16/10; }
+  }
+</style>

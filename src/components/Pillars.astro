@@ -1,0 +1,44 @@
+---
+import { getEntry } from 'astro:content';
+const { data: section } = await getEntry('homepage', 'pillarsSection');
+const { data: pillars } = await getEntry('homepage', 'pillars');
+---
+<section class="pillars" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line"><span class="dash"></span> {section.eyebrow}</div>
+      <h2>{section.title}</h2>
+      <p>{section.intro}</p>
+    </div>
+    <div class="pillar-grid">
+      {(pillars as { title: string; body: string }[]).map((p) => (
+        <div class="pillar">
+          <h3>{p.title}</h3>
+          <p>{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pillars { padding: clamp(64px, 8vw, 104px) 0; }
+  .section-head { max-width: 62ch; margin-bottom: clamp(36px, 5vw, 56px); }
+  .section-head h2 { font-size: clamp(28px, 3.4vw, 38px); }
+  .section-head p { margin-top: 14px; color: var(--charcoal); font-size: 16px; }
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .pillar { background: var(--panel); padding: clamp(26px, 3vw, 36px); }
+  .pillar h3 { font-size: 21px; font-weight: 600; }
+  .pillar p { margin-top: 10px; color: var(--charcoal); font-size: 15px; }
+  @media (max-width: 860px) {
+    .pillar-grid { grid-template-columns: 1fr; }
+  }
+</style>

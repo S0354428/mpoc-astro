@@ -1,0 +1,45 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  title?: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+  sectionId?: string;
+}
+let props = Astro.props;
+
+// If no props passed, fall back to the homepage's own CTA content
+// (keeps the homepage working exactly as before, no changes needed there).
+if (!props.title) {
+  const entry = await getEntry('homepage', 'ctaBand');
+  props = { ...entry.data, sectionId: props.sectionId };
+}
+
+const { title, primaryButtonText, primaryButtonLink, secondaryButtonText, secondaryButtonLink, sectionId } = props;
+---
+<section class="cta-band" id={sectionId || 'involved'}>
+  <div class="wrap cta-inner">
+    <h2>{title}</h2>
+    <div class="cta-actions">
+      {primaryButtonText && <a class="btn btn-primary" href={primaryButtonLink}>{primaryButtonText}</a>}
+      {secondaryButtonText && <a class="btn btn-ghost" href={secondaryButtonLink} target={secondaryButtonLink?.startsWith('http') ? '_blank' : undefined} rel="noopener">{secondaryButtonText}</a>}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band { background: var(--oat-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .cta-inner {
+    padding: clamp(48px, 7vw, 76px) 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+  .cta-inner h2 { font-size: clamp(24px, 3vw, 32px); max-width: 20ch; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+</style>

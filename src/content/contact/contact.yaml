@@ -1,0 +1,15 @@
+hero:
+  eyebrow: "Contact"
+  title: "Get in touch"
+  body: "Whether you want to join, volunteer, sponsor, or just have a question — reach out."
+
+email:
+  address: "mercermpoc@gmail.com"
+
+social:
+  - platform: "Instagram"
+    link: "#"
+
+meeting:
+  title: "General body meetings"
+  body: "Placeholder — add meeting day, time, and location here."

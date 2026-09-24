@@ -1,0 +1,38 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import CardGrid from '../components/CardGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const { data: hero } = await getEntry('getInvolved', 'hero');
+const { data: committees } = await getEntry('getInvolved', 'committees');
+const { data: leadership } = await getEntry('getInvolved', 'leadership');
+const { data: howToJoin } = await getEntry('getInvolved', 'howToJoin');
+const { data: cta } = await getEntry('getInvolved', 'cta');
+---
+<BaseLayout title="Get Involved — MPOC">
+  <Nav />
+  <main>
+    <PageHero {...hero} />
+    <section class="wrap block">
+      <CardGrid items={committees} />
+    </section>
+    <section class="wrap block narrow">
+      <SectionIntro eyebrow={leadership.eyebrow} title={leadership.title} body={leadership.body} />
+    </section>
+    <section class="wrap block narrow">
+      <SectionIntro eyebrow={howToJoin.eyebrow} title={howToJoin.title} body={howToJoin.body} />
+    </section>
+  </main>
+  <CtaBand {...cta} sectionId="join" />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .block { padding: clamp(28px, 4vw, 48px) 0; }
+  .block.narrow { max-width: 700px; }
+</style>

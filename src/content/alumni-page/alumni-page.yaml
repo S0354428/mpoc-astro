@@ -1,0 +1,10 @@
+hero:
+  eyebrow: "Alumni"
+  title: "MPOC doesn't end at graduation"
+  body: "Here's where our members have gone — in clinical practice, research, grad school, and beyond."
+
+stayConnected:
+  title: "Stay connected"
+  body: "Graduated MPOC member? Tell us where you ended up — submissions are reviewed by the exec board before going live. Placeholder for the submission form."
+  ctaText: "Submit your update"
+  ctaLink: "/contact"

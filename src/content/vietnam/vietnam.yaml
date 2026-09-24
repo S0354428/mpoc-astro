@@ -1,0 +1,18 @@
+hero:
+  eyebrow: "Mercer on Mission — Vietnam"
+  title: "Where MPOC's work leads"
+  body: "Each summer, a Mercer on Mission team travels to Vietnam to fit amputees with prosthetic legs and hands. MPOC exists to help prepare Mercer students for this program — through the lab, Vietnamese lessons, and clinical training. For the full program details, dates, and academic credit information, visit the official Mercer on Mission page."
+  primaryButtonText: "See full program details"
+  primaryButtonLink: "https://mom.mercer.edu/vietnam/"
+  secondaryButtonText: "How MPOC prepares you →"
+  secondaryButtonLink: "/get-involved"
+
+dinner:
+  eyebrow: "Fundraising Dinner"
+  title: "Hosted by VSA, supported by MPOC"
+  body: "The Mercer on Mission Vietnam Fundraising Dinner is planned and run by the Mercer Vietnamese Student Association. MPOC's role is offering volunteers day-of — we don't plan or set up the event itself. Placeholder for dinner photos and dates once confirmed."
+
+cta:
+  title: "Ready to apply?"
+  primaryButtonText: "Apply on the official site"
+  primaryButtonLink: "https://mom.mercer.edu/vietnam/"

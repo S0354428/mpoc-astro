@@ -1,0 +1,48 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+
+const { data: hero } = await getEntry('about', 'hero');
+const { data: mission } = await getEntry('about', 'mission');
+const { data: history } = await getEntry('about', 'history');
+const { data: facultySection } = await getEntry('about', 'facultySection');
+const { data: faculty } = await getEntry('about', 'faculty');
+---
+<BaseLayout title="About — MPOC">
+  <Nav />
+  <main>
+    <PageHero {...hero} />
+    <section class="wrap block">
+      <SectionIntro eyebrow={mission.eyebrow} title={mission.title} />
+      <p class="body">{mission.body}</p>
+    </section>
+    <section class="wrap block">
+      <SectionIntro eyebrow={history.eyebrow} title={history.title} />
+      <p class="body">{history.body}</p>
+    </section>
+    <section class="wrap block">
+      <SectionIntro eyebrow={facultySection.eyebrow} title={facultySection.title} body={facultySection.body} />
+      <div class="faculty-list">
+        {(faculty as { name: string; role: string }[]).map((f) => (
+          <div class="faculty-item">
+            <strong>{f.name}</strong>
+            <span>{f.role}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .block { padding: clamp(28px, 4vw, 44px) 0; max-width: 720px; }
+  .body { color: var(--charcoal); font-size: 15.5px; line-height: 1.7; }
+  .faculty-list { display: flex; flex-direction: column; gap: 10px; }
+  .faculty-item { display: flex; gap: 10px; font-size: 15px; }
+  .faculty-item span { color: var(--charcoal); }
+</style>

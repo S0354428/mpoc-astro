@@ -1,0 +1,17 @@
+hero:
+  eyebrow: "Our Partners"
+  title: "Who we work with"
+  body: "MPOC doesn't do everything alone — here's who we team up with on campus."
+
+vsa:
+  eyebrow: "Mercer Vietnamese Student Association"
+  title: "A sister club, a shared mission"
+  body: "VSA and MPOC run several events together throughout the year. VSA plans and hosts the Mercer on Mission Vietnam Fundraising Dinner in full — MPOC's role is offering volunteers on the day of the event."
+
+jointEvents:
+  - title: "Mercer on Mission Vietnam Fundraising Dinner"
+    body: "Hosted by VSA. MPOC volunteers day-of."
+  - title: "Camp for a Cause"
+    body: "Placeholder — add details once confirmed."
+  - title: "Joint fundraisers"
+    body: "Placeholder — ongoing, add specific events as they're scheduled."

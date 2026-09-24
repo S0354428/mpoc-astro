@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+const all = (await getCollection('alumni')).sort((a, b) => a.data.order - b.data.order);
+const featured = all.find((a) => a.data.featured);
+const rest = all.filter((a) => a !== featured);
+---
+{featured && (
+  <div class="spotlight">
+    <div class="spotlight-photo"><span class="ph-label">photo</span></div>
+    <div class="spotlight-text">
+      <span class="tag">Featured Alumna Spotlight</span>
+      <h3>{featured.data.anonymous ? 'Anonymous Alum' : featured.data.name}</h3>
+      <p class="role">{featured.data.currentRole} · Class of {featured.data.gradYear}</p>
+      <p class="body">Placeholder for their full story — how MPOC connects to what they do now.</p>
+      {featured.data.linkedin && <a class="btn btn-ghost small" href={featured.data.linkedin} target="_blank" rel="noopener">Connect on LinkedIn</a>}
+    </div>
+  </div>
+)}
+
+<div class="grid">
+  {rest.map((a) => (
+    <div class="card">
+      <div class="photo"><span class="ph-label">photo</span></div>
+      <h4>{a.data.anonymous ? 'Anonymous Alum' : a.data.name}</h4>
+      <p class="role">{a.data.currentRole}</p>
+      <p class="meta">Class of {a.data.gradYear} · {a.data.tag}</p>
+      {a.data.linkedin && <a class="link" href={a.data.linkedin} target="_blank" rel="noopener">LinkedIn →</a>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .spotlight {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(24px, 4vw, 40px);
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: clamp(24px, 3vw, 36px);
+    margin-bottom: clamp(32px, 4vw, 48px);
+  }
+  .spotlight-photo {
+    aspect-ratio: 4/5;
+    border-radius: 6px;
+    background: repeating-linear-gradient(135deg, var(--oat), var(--oat) 10px, var(--oat-deep) 10px, var(--oat-deep) 20px);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .spotlight .ph-label { font-size: 12px; color: var(--charcoal); }
+  .spotlight .tag { font-size: 12px; font-weight: 500; color: var(--orange-deep); text-transform: uppercase; letter-spacing: 0.04em; }
+  .spotlight h3 { margin-top: 10px; font-size: clamp(24px, 2.6vw, 30px); }
+  .spotlight .role { margin-top: 6px; color: var(--charcoal); font-size: 14.5px; }
+  .spotlight .body { margin-top: 14px; color: var(--charcoal); font-size: 15px; }
+  .btn.small { margin-top: 18px; padding: 9px 18px; font-size: 13px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px; }
+  .card .photo {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    background: repeating-linear-gradient(135deg, var(--oat), var(--oat) 10px, var(--oat-deep) 10px, var(--oat-deep) 20px);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .card .ph-label { font-size: 11px; color: var(--charcoal); }
+  .card h4 { font-size: 16px; }
+  .card .role { margin-top: 4px; font-size: 13px; color: var(--charcoal); }
+  .card .meta { margin-top: 4px; font-size: 12px; color: var(--charcoal); opacity: 0.75; }
+  .card .link { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--orange-deep); text-decoration: none; }
+  @media (max-width: 720px) {
+    .spotlight { grid-template-columns: 1fr; }
+  }
+</style>
